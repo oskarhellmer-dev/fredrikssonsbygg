@@ -2,6 +2,7 @@
  * hero: Poster · nav: floating bar (pill refused: Studio's corners are square) · footer: letter close · imagery: photographs, the family's own two plus one library frame credited in the footer · signature: the family's roof at dusk as the whole first screen
  * axes: light/roman-serif/warm · posture: restrained · contrast: pass · fold: pass · v2.0.0 */
 /* Hallmark · pre-emit critique: P5 H4 E4 S5 R4 V4 · weakest: E, the services were about to become icon tiles; set them as rows under an ink rule instead */
+/* Hallmark · sweep: sloplint --render clean, 0 FAIL 0 REFLEX 0 WARN at 1280/1440/1920/375 */
 @import url("./tokens.css");
 @import url("./base.css");
 
