@@ -1,5 +1,5 @@
 /* Hallmark · shape: Work-led proof sheet (swapped from the draw's Feature Stack, which needs product screens the material has none of) · genre: editorial · theme: Studio (deal 1/3, drawn) · job: hire · draw: 2545f6
- * hero: Poster · nav: floating bar (pill refused: Studio's corners are square) · footer: letter close · imagery: photographs, the family's own two plus one library frame credited in the footer · signature: the family's roof at dusk as the whole first screen
+ * hero: Stage (Poster refused: the source photo is 2200px wide, too little for a full-bleed retina hero) · nav: floating bar (pill refused: Studio's corners are square) · footer: letter close · imagery: photographs, the family's own two plus one library frame credited in the footer · signature: the family's roof at dusk, framed and crop-marked
  * axes: light/roman-serif/warm · posture: restrained · contrast: pass · fold: pass · v2.0.0 */
 /* Hallmark · pre-emit critique: P5 H4 E4 S5 R4 V4 · weakest: E, the services were about to become icon tiles; set them as rows under an ink rule instead */
 /* Hallmark · sweep: sloplint --render clean, 0 FAIL 0 REFLEX 0 WARN at 1280/1440/1920/375 */
@@ -7,6 +7,10 @@
 @import url("./base.css");
 
 /* ---------- print marks (Studio): crop ticks on every printed piece ---------- */
+html { scroll-behavior: smooth; }
+.skip { position: absolute; top: var(--space-xs); left: var(--space-xs); z-index: var(--z-toast); padding: var(--space-sm) var(--space-md); background: var(--color-ink); color: var(--color-paper); border-radius: var(--radius-card); text-decoration: none; transform: translateY(-250%); }
+.skip:focus { transform: none; }
+.p404 > * + * { margin-top: var(--space-lg); }
 .crop { position: relative; --l: 10px; --o: 12px; }
 .crop::before {
   content: ""; position: absolute; inset: calc(-1 * var(--o)); pointer-events: none; z-index: var(--z-raised);
@@ -61,21 +65,17 @@
 .nav__links { display: flex; gap: var(--space-lg); margin-inline-start: var(--space-lg); }
 .nav__links a { font-size: var(--text-sm); color: var(--color-ink-2); text-decoration: none; }
 .nav__links a:hover { color: var(--color-ink); text-decoration: underline; text-decoration-color: var(--color-accent); text-underline-offset: 0.24em; }
+.nav__links a[aria-current="true"] { color: var(--color-ink); text-decoration: underline; text-decoration-color: var(--color-accent); text-underline-offset: 0.24em; }
 .btn--nav { margin-inline-start: auto; min-height: 44px; padding: 0 var(--space-md); font-size: var(--text-sm); }
 
-/* ---------- hero: Poster ---------- */
+/* ---------- hero: Stage (a framed proof, not a full-bleed poster) ---------- */
 :root { --nav-h: calc(64px + var(--space-md) * 2); }
-.hero { position: relative; display: grid; align-content: end; min-height: calc(100dvh - var(--nav-h)); isolation: isolate; }
-.hero__media { position: absolute; inset: 0; margin: 0; border-radius: 0; }
-.hero__veil {
-  position: absolute; inset: 0; z-index: 2;
-  background: linear-gradient(to top right, color-mix(in oklab, var(--color-ink) 84%, transparent) 0%, color-mix(in oklab, var(--color-ink) 34%, transparent) 52%, transparent 84%);
-}
-.hero__content { position: relative; z-index: 3; padding-block: var(--space-2xl) var(--space-lg); }
+.hero__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-2xl); align-items: center; min-height: calc(100dvh - var(--nav-h)); padding-block: var(--space-2xl); }
 .hero__txt { max-width: 34rem; }
-.hero h1 { color: var(--color-paper); }
-.hero .lead { margin-top: var(--space-md); color: color-mix(in oklab, var(--color-paper) 88%, transparent); }
+.hero .lead { margin-top: var(--space-md); color: var(--color-ink-2); }
 .hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-md); margin-top: var(--space-lg); }
+.hero__frame { width: 100%; }
+.hero__media { margin: 0; aspect-ratio: 4 / 3; border-radius: var(--radius-card); outline: var(--rule-hair) solid color-mix(in oklab, var(--color-ink) 8%, transparent); outline-offset: -1px; }
 
 /* ---------- sections ---------- */
 .section { padding-block: var(--section-gap); }
@@ -173,7 +173,7 @@ input:disabled, select:disabled, textarea:disabled { opacity: 0.55; cursor: not-
 
 /* ---------- responsive ---------- */
 @media (max-width: 60rem) {
-  .hero { min-height: calc(100svh - var(--nav-h)); }
+  .hero__grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); min-height: calc(100svh - var(--nav-h)); padding-block: var(--space-xl) var(--space-2xl); }
   .photo--wide, #om-oss .photo { min-height: 0; }
   .nav__links { display: none; }
   .split, .close { grid-template-columns: minmax(0, 1fr); gap: var(--space-2xl); }
